@@ -18,13 +18,13 @@ body {
 .sidebar {
     background-color: #f1f1f1;
     padding: 10px;
-    width: 200px; /* Adjust width as needed */
+    width: 200px; 
 }
 .sidebar button {
     width: 100%;
     padding: 10px;
     margin-bottom: 5px;
-    display: none; /* Initially hide all buttons */
+    display: none; 
 }
 .main {
     flex-grow: 1;
