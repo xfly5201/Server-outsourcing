@@ -4,13 +4,13 @@ function showButtons(type) {
         button.style.display = 'none';
     });
 
-    // Show buttons for the selected type
+    // 显示所选类型的按钮
     document.querySelectorAll('#sidebar .' + type).forEach(button => {
         button.style.display = 'block';
     });
 }
 
-// Initialize buttons for the default checked type
+// 初始化默认选中类型的按钮
 showButtons('type1');
 
 
@@ -149,33 +149,6 @@ function handleWordFile(file) {
 
 
 
-
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    var url = '1.pdf';
-    var pdfCanvas = document.getElementById('pdfCanvas');
-    var ctx = pdfCanvas.getContext('2d');
-
-    // 这里需要设置为pdf.worker.js，而不是pdf.min.js
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.worker.min.js';
-
-    pdfjsLib.getDocument(url).promise.then(function(pdfDoc) {
-        pdfDoc.getPage(1).then(function(page) {
-            var viewport = page.getViewport({ scale: 1.5 });
-            pdfCanvas.height = viewport.height;
-            pdfCanvas.width = viewport.width;
-
-            var renderContext = {
-                canvasContext: ctx,
-                viewport: viewport
-            };
-            page.render(renderContext).promise.then(function() {
-                console.log('Page rendered');
-            });
-        });
-    });
-});
 
 
 
