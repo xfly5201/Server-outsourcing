@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>数据标注界面</title>
+    <script src="https://cdn.jsdelivr.net/npm/mammoth@1.4.2/mammoth.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.min.js"></script>
+</head>
+
+<body>
+<h1 class="main-title">数据标注界面</h1>
+<div class="navbar">
+    <div>数据标注</div>
+    <div>数据审核</div>
+    <div>数据发布</div>
+    <div>项目管理</div>
+    <div>权限管理</div>
+</div>
+
+<div class="main">
+    <div class="sidebar" id="sidebar">
+        <!-- 侧边栏内容 -->
+        <button class="type1">操作1</button>
+        <button class="type1">操作2</button>
+        <button class="type2">操作3</button>
+        <button class="type2">操作4</button>
+        <button class="type3">操作5</button>
+        <button class="type3">操作6</button>
+        <button class="type4">操作7</button>
+        <button class="type4">操作8</button>
+    </div>
+
+    <div class="content">
+        <div class="file-drop-area" id="fileDropArea">
+            将文件拖拽到此区域
+        </div>
+
+        <div class="options">
+            <input type="radio" id="type1" name="annotationType" onchange="showButtons('type1')" checked>
+            <label for="type1">信息抽取标注</label>
+            <input type="radio" id="type2" name="annotationType" onchange="showButtons('type2')">
+            <label for="type2">文本分类标注</label>
+            <input type="radio" id="type3" name="annotationType" onchange="showButtons('type3')">
+            <label for="type3">图像文本标注</label>
+            <input type="radio" id="type4" name="annotationType" onchange="showButtons('type4')">
+            <label for="type4">图片分类标注</label>
+        </div>
+        <button class="submit-button">提交</button>
+
+        <div class="fixed-area" id="fixedArea">
+            这里将显示拖放的图片
+            <canvas id="pdfCanvas"></canvas>
+        </div>
+
+
+
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

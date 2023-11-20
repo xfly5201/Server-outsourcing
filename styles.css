@@ -1,0 +1,102 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+.navbar {
+    background-color: #007bff;
+    padding: 10px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+}
+.navbar div {
+    cursor: pointer;
+}
+.sidebar {
+    background-color: #f1f1f1;
+    padding: 10px;
+    width: 200px; /* Adjust width as needed */
+}
+.sidebar button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 5px;
+    display: none; /* Initially hide all buttons */
+}
+.main {
+    flex-grow: 1;
+    display: flex;
+}
+.content {
+    padding: 20px;
+    flex-grow: 1;
+}
+.file-drop-area {
+    border: 2px dashed #ccc;
+    padding: 400px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.options {
+    margin-bottom: 10px;
+}
+.submit-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    bottom: 10px;
+    right: 10px;
+}
+.main-title {
+    text-align: center;
+    background-color: #b700ff;
+    color: white;
+    padding: 10px;
+    margin: 0;
+}
+
+/* 添加拖放区域的样式 */
+#fileDropArea {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#fileDropArea.dragover {
+    background-color: #f0f0f0; /* 拖放时的背景颜色 */
+}
+
+
+/* 添加固定区域的样式 */
+#fixedArea {
+    margin-top: 20px; /* 调整与拖放区域的间距 */
+    text-align: center;
+    width: 100%; /* 固定区域宽度 */
+    max-height: 100%; /* 设置最大高度为视口高度 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: auto; /* 允许区域滚动 */
+}
+
+#fixedArea img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* 保持原始宽高比，适应区域 */
+}
+
+#fixedArea canvas {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* 如果你希望canvas保持原始宽高比 */
+}
+
