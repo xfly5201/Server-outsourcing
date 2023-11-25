@@ -100,3 +100,78 @@ body {
     object-fit: contain; /* 如果你希望canvas保持原始宽高比 */
 }
 
+/***********************************yyx↓**************************************/
+.label {
+    border: 1px solid black; /* 添加黑色边框 */
+    border-radius: 5px;
+    padding: 2px 5px;
+    display: inline-block; /* 设置为内联块级元素，宽度将自适应文本内容 */
+    margin-right: 5px; /* 可以添加适当的右边距以分隔标签 */
+    margin-top: 10px;
+    background-color: transparent; /* 设置背景色为透明 */
+    color: black;
+}
+
+.label-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.label-item {
+    margin-right: 10px; /* 控制标签之间的间距 */
+}
+
+.label-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.filter-delete-container {
+    display: flex;
+    align-items: center;
+}
+
+#deleteSelectedButton {
+    margin-left: 10px; /* 控制删除按钮与筛选框之间的间距 */
+    margin-right: 10px;
+}
+
+.label-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.filter-add-delete-container {
+    display: flex;
+    align-items: center;
+}
+
+#addNewLabelButton {
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+.label-add-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#addSelectedButton {
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+/* 通用按钮样式 */
+.lbbutton {
+    background-color: #007bff;
+    color: white;
+    padding: 3px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+/***********************************yyx↑**************************************/
