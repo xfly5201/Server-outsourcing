@@ -24,15 +24,13 @@
 <div class="main">
     <div class="sidebar" id="sidebar">
         <!-- 侧边栏内容 -->
-        <button class="type1">操作1</button>
-        <button class="type1">操作2</button>
+        <button class="type1" >划选与标注</button>
         <button class="type2">操作3</button>
-		
         <button class="type2">操作4</button>
         <button class="type3">操作5</button>
         <button class="type3">操作6</button>
-        <button class="type4">操作7</button>
-        <button class="type4">操作8</button>
+        <button class="type4">修改标签库</button>
+        <button class="type4">添加标签</button>
     </div>
 
     <div class="content">
@@ -63,13 +61,31 @@
             这里将显示拖放的图片
         </div>
 
+        <!----------------------信息标注------------------------>
+        <div id="xinxibiaozhu" >
+            <div id="selected">
+                        <h2>划选内容</h2>
+                        <div>
+                            <input type="text" id="selectedText" style="width: 1200px; height: 300px;"> </input>
+                        </div>
+                        <button id="selectedButton" style="width: 70px; height: 30px;">划选</button>
+            </div>
 
+            <div id="annotateText">
+                        <div>
+                            <textarea id="annotateTextarea" placeholder="在这里写标注内容" style="width: 1200px; height: 100px;"></textarea>
+                        </div>
+                        
+                        <button id="annotateButton" style="width: 70px; height: 30px;">标注</button>
+            </div>
+
+        </div>
+        
 
     </div>
 </div>
-<div id="textLabelingArea" class="content">
-	文本预标注：
-</div>
+<div id="textLabelingArea" class="content"></div>
 <script src="script.js"></script>
 </body>
 </html>
+
