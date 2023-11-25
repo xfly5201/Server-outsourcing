@@ -249,15 +249,18 @@ function submitForm() {
         const label2 = document.getElementById('label2').value;
 
         const textLabelingArea = document.getElementById('textLabelingArea');
-        const labelsDisplay = document.createElement('div');
-        labelsDisplay.textContent = `文本类型: ${label1}, 主题类型: ${label2}`;
-        textLabelingArea.appendChild(labelsDisplay);
+        
+        // 检查标签内容是否为空，如果不为空，则显示标签内容
+        if (label1.trim() !== '' || label2.trim() !== '') {
+            const labelsDisplay = document.createElement('div');
+            labelsDisplay.textContent = `文本类型: ${label1}, 主题类型: ${label2}`;
+            textLabelingArea.appendChild(labelsDisplay);
+        }
     }
 }
 
 const submitButton = document.querySelector('.submit-button');
 submitButton.addEventListener('click', submitForm);
-
 
 function showButtons(type) {
     // 隐藏所有按钮	
