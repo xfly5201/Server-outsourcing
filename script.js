@@ -1,4 +1,3 @@
-
 // 初始化默认选中类型的按钮
 showButtons('type1');
 //showButtons函数放在文本标注的最后
@@ -249,18 +248,15 @@ function submitForm() {
         const label2 = document.getElementById('label2').value;
 
         const textLabelingArea = document.getElementById('textLabelingArea');
-        
-        // 检查标签内容是否为空，如果不为空，则显示标签内容
-        if (label1.trim() !== '' || label2.trim() !== '') {
-            const labelsDisplay = document.createElement('div');
-            labelsDisplay.textContent = `文本类型: ${label1}, 主题类型: ${label2}`;
-            textLabelingArea.appendChild(labelsDisplay);
-        }
+        const labelsDisplay = document.createElement('div');
+        labelsDisplay.textContent = `文本类型: ${label1}, 主题类型: ${label2}`;
+        textLabelingArea.appendChild(labelsDisplay);
     }
 }
 
 const submitButton = document.querySelector('.submit-button');
 submitButton.addEventListener('click', submitForm);
+
 
 function showButtons(type) {
     // 隐藏所有按钮	
@@ -297,3 +293,54 @@ function showButtons(type) {
 	
 }
 //文本标注结束
+
+//-------------信息抽取------------------------------------------------------------
+const FixedArea = document.getElementById('fixedArea');
+const selectButton = document.getElementById('selectedButton');
+const selectedTextDiv = document.getElementById('selectedText');
+const annotationTextarea = document.getElementById('annotateTextarea');
+const annotateButton = document.getElementById('annotateButton');
+
+let selectedText = '';
+
+// 获取用户选中的文本
+function getSelectedText() {
+        const selection = window.getSelection();
+        return selection.toString();
+}
+
+
+// 添加划选按钮点击事件
+selectButton.addEventListener('click', () => {
+    // 获取用户选中的文本
+    selectedText = getSelectedText();
+
+    // 将选中的文本显示在 "划选 div" 中
+    selectedTextDiv.value = selectedText;
+});
+
+// 添加标注按钮点击事件
+annotateButton.addEventListener('click', () => {
+    // 获取标注的内容
+    const annotationText = annotationTextarea.value;
+
+    // 在这里执行标注操作，例如弹出提示框
+    alert(`标注选中文本：${selectedText}\n标注内容：${annotationText}`);
+
+    // 清空选中的文本和标注内容
+    selectedText = '';
+    selectedTextDiv.textContent = '';
+    annotationTextarea.value = '';
+});
+
+// 获取“添加标签”按钮元素
+const Button = document.querySelector('.type1');
+
+// 添加点击事件处理程序
+addLabelButton.addEventListener('click', function() {
+    // 显示标签添加容器
+    showLabelAddContainer();
+    
+    // 执行初始化标签库和已添加标签列表的逻辑
+    initLabelLists();
+});
