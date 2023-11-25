@@ -34,14 +34,11 @@
     </div>
 
     <div class="content">
-		<label for="label1">文本:</label>
-		<input type="text" id="label1">
-		<label for="label2">主题:</label>
-		<input type="text" id="label2">
+
         <div class="file-drop-area" id="fileDropArea">
             将文件拖拽到此区域
-			<input type="file" id="fileInput" accept=".txt">			
-			
+            <input type="file" id="fileInput" accept=".txt">
+
         </div>
 
         <div class="options">
@@ -54,8 +51,16 @@
             <input type="radio" id="type4" name="annotationType" onchange="showButtons('type4')">
             <label for="type4">图片分类标注</label>
         </div>
-      <!-- <button onclick="submitForm()">提交</button> -->
-	  <button class="submit-button">提交</button>
+        <!-- <button onclick="submitForm()">提交</button> -->
+        <button class="submit-button">提交</button>
+
+        <div>
+            <label for="label1">文本:</label>
+            <input type="text" id="label1">
+            <label for="label2">主题:</label>
+            <input type="text" id="label2">
+        </div>
+
 
         <div class="fixed-area" id="fixedArea">
             这里将显示拖放的图片
@@ -64,23 +69,23 @@
         <!----------------------信息标注------------------------>
         <div id="xinxibiaozhu" >
             <div id="selected">
-                        <h2>划选内容</h2>
-                        <div>
-                            <input type="text" id="selectedText" style="width: 1200px; height: 300px;"> </input>
-                        </div>
-                        <button id="selectedButton" style="width: 70px; height: 30px;">划选</button>
+                <h2>划选内容</h2>
+                <div>
+                    <input type="text" id="selectedText" style="width: 1200px; height: 300px;"> </input>
+                </div>
+                <button id="selectedButton" style="width: 70px; height: 30px;">划选</button>
             </div>
 
             <div id="annotateText">
-                        <div>
-                            <textarea id="annotateTextarea" placeholder="在这里写标注内容" style="width: 1200px; height: 100px;"></textarea>
-                        </div>
-                        
-                        <button id="annotateButton" style="width: 70px; height: 30px;">标注</button>
+                <div>
+                    <textarea id="annotateTextarea" placeholder="在这里写标注内容" style="width: 1200px; height: 100px;"></textarea>
+                </div>
+
+                <button id="annotateButton" style="width: 70px; height: 30px;">标注</button>
             </div>
 
         </div>
-        
+
 
     </div>
 </div>
@@ -88,4 +93,3 @@
 <script src="script.js"></script>
 </body>
 </html>
-
