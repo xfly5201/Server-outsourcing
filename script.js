@@ -193,7 +193,7 @@ function preLabelTextData(text) {
             }
         }
 
-        return modifiedParagraph;
+        return `预处理后为：${modifiedParagraph}`; 
     });
 
     displayTextForLabeling(modifiedParagraphs);
