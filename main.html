@@ -29,8 +29,8 @@
         <button class="type2">操作4</button>
         <button class="type3">操作5</button>
         <button class="type3">操作6</button>
-        <button class="type4">修改标签库</button>
-        <button class="type4">添加标签</button>
+        <button class="type4" id="editLabelsButton">修改标签库</button>
+        <button class="type4" id="selectLabelsButton">添加标签</button>
     </div>
 
     <div class="content">
@@ -85,7 +85,48 @@
             </div>
 
         </div>
+        <!------------------------------yyx↓-------------------------------->
+        <div class="label-container" id="labelContainer" style="display: none;">
+            <h2>标签库</h2>
+            <div class="filter-delete-container">
+                <input type="text" id="filterInput" placeholder="筛选标签">
+                <button id="deleteSelectedButton" onclick="deleteSelectedLabels()" class="lbbutton">删除选中标签</button>
+            </div>
+            <br> <!-- 在这里添加换行 -->
+            <div class="filter-add-container">
+                <input type="text" id="newLabelInput" placeholder="新标签">
+                <button id="addNewLabelButton" onclick="addNewLabel()" class="lbbutton">添加新标签</button>
+            </div>          
+            <br> <!-- 在这里添加换行 -->
+            <div id="labelList" class="label-list">
+                <!-- 标签列表将在这里显示 -->
+            </div>
+            <br>
+            <button id="reserveLabelsButton" class="lbbutton">设为预定</button>
+        </div>
 
+        
+        <!-- 已选标签容器 -->
+        <div class="label-container" id="labelSelectionContainer" style="display: none;">
+            <h2>已选标签</h2>
+            <button id="updateLabelsButton" class="lbbutton">更新</button>
+            <br>
+            <div class="label-list" id="optionalLabelList">
+                <!-- 可选标签将在这里显示 -->
+            </div>
+        </div>
+
+        <!-- 可选标签容器 -->
+        <div class="label-container" id="selectedLabelContainer" style="display: none;">
+            <h2>可选标签</h2>
+            <input type="text" id="selectedLabelFilter" placeholder="筛选可选标签">
+            </div>
+            <br> <!-- 在这里添加换行 -->
+            <div class="label-list" id="selectedLabelList">
+                <!-- 已选标签将在这里显示 -->
+            </div>
+        </div>
+        <!------------------------------yyx↑-------------------------------->
 
     </div>
 </div>
