@@ -357,3 +357,254 @@ addLabelButton.addEventListener('click', function() {
     // 执行初始化标签库和已添加标签列表的逻辑
     initLabelLists();
 });
+
+//---------------------------------------yyx↓-------------------------------------------
+
+// 获取“修改标签”按钮
+const editLabelButton = document.querySelector('.type4#editLabelsButton'); // 这是“修改标签”按钮
+const labelContainer = document.getElementById('labelContainer');
+// 获取添加标签按钮和标签库容器
+const selectLabelsButton = document.getElementById('selectLabelsButton');
+const selectedLabelContainer = document.getElementById('selectedLabelContainer');
+// 获取筛选输入框和已选标签容器
+const selectedLabelFilter = document.getElementById('selectedLabelFilter');
+const selectedLabelList = document.getElementById('selectedLabelList');
+const labelSelectionContainer = document.getElementById('labelSelectionContainer');
+const optionalLabelList = document.getElementById('optionalLabelList');
+
+// 添加点击事件处理程序
+editLabelButton.addEventListener('click', () => {
+    const confirmesc = confirm('未保存的数据将全部丢失，确认离开吗？');
+    if (!confirmesc) {
+        return;
+    }
+    resetLabelCheckboxes();
+    labelContainer.style.display = 'block'; // 显示标签库
+    selectedLabelContainer.style.display = 'none';
+    labelSelectionContainer.style.display = 'none';
+});
+
+// 标签列表数据
+let labels = ['标签1', '标签2', '标签3'];
+
+// 获取标签列表的容器元素
+const labelList = document.getElementById('labelList');
+const filterInput = document.getElementById('filterInput');
+const deleteSelectedButton = document.getElementById('deleteSelectedButton');
+
+// 初始化标签列表
+function initLabelList() {
+    labelList.innerHTML = ''; // 清空标签列表
+
+    labels.forEach((label, index) => {
+        const labelItemb = document.createElement('div');
+        labelItemb.className = 'label-item';
+        labelItemb.innerHTML = `
+            <label class="label">
+                <input type="checkbox" class="label-checkbox">
+                <span>${label}</span>
+            </label>
+        `;
+        labelList.appendChild(labelItemb);
+    });
+
+    // 添加筛选标签事件监听器
+    filterInput.addEventListener('input', filterLabels);
+
+    // 添加删除选中标签按钮的点击事件处理程序
+    deleteSelectedButton.addEventListener('click', confirmDeleteSelectedLabels);
+}
+
+// 添加新标签
+function addNewLabel() {
+    const newLabelInput = document.getElementById('newLabelInput');
+    const newLabelName = newLabelInput.value.trim();
+
+    if (newLabelName !== '') {
+        // 检查新标签是否已存在
+        if (labels.includes(newLabelName)) {
+            alert('新标签已存在，请输入不同的标签。');
+        } else {
+            labels.push(newLabelName);
+            newLabelInput.value = '';
+            filterInput.value= "";
+            initLabelList();
+        }
+    }
+}
+
+const inputEvent = new Event('input', {
+  bubbles: true, // 事件是否冒泡
+  cancelable: true, // 是否可以取消事件的默认行为
+});
+
+// 删除选中的标签
+function deleteSelectedLabels() {
+    const checkboxes = document.querySelectorAll('.label-checkbox');
+    const selectedLabels = [];
+
+    checkboxes.forEach((checkbox, index) => {
+        if (checkbox.checked) {
+            selectedLabels.push(index);
+        }
+    });
+
+    if (selectedLabels.length === 0) {
+        alert('请先选择要删除的标签。');
+        return;
+    }
+
+    const confirmDelete = confirm('确定要删除选中的标签吗？');
+
+    if (confirmDelete) {
+        selectedLabels.reverse().forEach(index => {
+            labels.splice(index, 1);
+        });
+        initLabelList();
+    }
+}
+
+// 筛选标签
+function filterLabels() {
+    const filterText = filterInput.value.toLowerCase();
+    const labelItems = document.querySelectorAll('.label-item');
+    
+    labelItems.forEach((labelItem, index) => {
+        const label = labels[index].toLowerCase();
+        if (label.includes(filterText)) {
+            labelItem.style.display = 'block';
+        } else {
+            labelItem.style.display = 'none';
+        }
+    });
+}
+
+// 添加点击事件处理程序
+selectLabelsButton.addEventListener('click', () => {
+    const confirmesc = confirm('未保存的数据将全部丢失，确认离开吗？');
+    if (!confirmesc) {
+        return;
+    }
+    // 清空筛选输入框
+    filterInput.value = "";
+    resetLabelCheckboxes();
+    filterInput.dispatchEvent(inputEvent);
+    labelContainer.style.display = 'none'; // 隐藏标签库
+    // 显示可选标签容器
+    selectedLabelContainer.style.display = 'block';
+    labelSelectionContainer.style.display = 'block';
+    // 复制标签列表到可选标签容器
+    const clonedLabelList = labelList.cloneNode(true);
+    
+    selectedLabelContainer.innerHTML = `
+    <h2>可选标签</h2>
+    <input type="text" id="selectedLabelFilter" placeholder="筛选可选标签">
+    </div>
+    <br> <!-- 在这里添加换行 -->
+    `;
+    clonedLabelList.id = 'selectedLabelList';
+    selectedLabelContainer.appendChild(clonedLabelList);
+    
+    // 获取所有标签复选框
+    const checkboxesq = document.querySelectorAll('.label-checkbox');
+
+    checkboxesq.forEach((checkbox) => {
+        const labelName = checkbox.nextElementSibling.textContent;
+
+        if (reservedLabels.includes(labelName)) {
+            checkbox.checked = true;
+        } else {
+            checkbox.checked = false;
+        }
+    });
+
+    const selectedLabelFilter = document.getElementById('selectedLabelFilter');
+    selectedLabelFilter.addEventListener('input', () => {
+        const filterTexta = selectedLabelFilter.value.toLowerCase();
+        const labelItemsa = clonedLabelList.querySelectorAll('.label-item');
+
+        labelItemsa.forEach((labelItem) => {
+            const labelText = labelItem.textContent.toLowerCase();
+            if (labelText.includes(filterTexta)) {
+                labelItem.style.display = 'block';
+            } else {
+                labelItem.style.display = 'none';
+            }
+        });
+    });
+});
+
+// 获取“更新”按钮元素
+const updateLabelsButton = document.getElementById('updateLabelsButton');
+
+// 添加点击事件处理程序
+updateLabelsButton.addEventListener('click', () => {
+    // 获取所有可选标签的复选框
+    const checkboxes = document.querySelectorAll('#selectedLabelList .label-checkbox');
+    
+    // 清空已选标签列表
+    optionalLabelList.innerHTML = '';
+
+    // 遍历复选框，将勾选的标签添加到已选标签列表
+    checkboxes.forEach((checkbox) => {
+        if (checkbox.checked) {
+            const labelName = checkbox.nextElementSibling.textContent;
+            const labelItem = document.createElement('div');
+            labelItem.className = 'label-item';
+            labelItem.innerHTML = `
+            <label class="label">
+                <span>${labelName}</span>
+            </label>
+            `;
+            optionalLabelList.appendChild(labelItem);
+        }
+    });
+});
+
+// 声明一个数组来存储选中的标签
+const reservedLabels = [];
+
+// 获取"设为预定"按钮元素
+const reserveLabelsButton = document.getElementById('reserveLabelsButton');
+
+// 添加"设为预定"按钮点击事件处理程序
+reserveLabelsButton.addEventListener('click', () => {
+    // 获取所有标签复选框
+    const checkboxes = document.querySelectorAll('.label-checkbox');
+
+    // 清空已选标签数组
+    reservedLabels.length = 0;
+
+    checkboxes.forEach((checkbox) => {
+        if (checkbox.checked) {
+            const labelName = checkbox.nextElementSibling.textContent;
+            reservedLabels.push(labelName);
+        }
+    });
+
+    // 已预定标签设为粗体
+    checkboxes.forEach((checkbox) => {
+        const labelName = checkbox.nextElementSibling.textContent;
+        const labelItem = checkbox.closest('.label-item');
+        
+        if (reservedLabels.includes(labelName)) {
+            labelItem.style.fontWeight = 'bold';
+        } else {
+            labelItem.style.fontWeight = 'normal';
+        }
+    });
+});
+
+//---- 初始化标签列表 -----------------------------------------------------
+initLabelList();
+
+//---- 取消全部勾选 ----------------------------------------
+function resetLabelCheckboxes() {
+    const checkboxes = document.querySelectorAll('.label-checkbox');
+
+    checkboxes.forEach((checkbox) => {
+        checkbox.checked = false;
+    });
+}
+
+//---------------------------------------yyx↑-------------------------------------------
