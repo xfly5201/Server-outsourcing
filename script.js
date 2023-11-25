@@ -248,9 +248,13 @@ function submitForm() {
         const label2 = document.getElementById('label2').value;
 
         const textLabelingArea = document.getElementById('textLabelingArea');
-        const labelsDisplay = document.createElement('div');
-        labelsDisplay.textContent = `文本类型: ${label1}, 主题类型: ${label2}`;
-        textLabelingArea.appendChild(labelsDisplay);
+        
+        // 检查标签内容是否为空，如果不为空，则显示标签内容
+        if (label1.trim() !== '' || label2.trim() !== '') {
+            const labelsDisplay = document.createElement('div');
+            labelsDisplay.textContent = `文本类型: ${label1}, 主题类型: ${label2}`;
+            textLabelingArea.appendChild(labelsDisplay);
+        }
     }
 }
 
@@ -289,6 +293,15 @@ function showButtons(type) {
         label1Input.style.display = 'none';
         label2Label.style.display = 'none';
         label2Input.style.display = 'none';
+    }
+    const fileInput = document.getElementById('fileInput');
+
+    if (type === 'type2') {
+        // 如果当前类型为'type2'，则显示导入文本数据按钮
+        fileInput.style.display = 'block';
+    } else {
+        // 对于其他类型，隐藏导入文本数据按钮
+        fileInput.style.display = 'none';
     }
 	
 }
