@@ -1,5 +1,5 @@
 // 初始化默认选中类型的按钮
-// showButtons('type1');
+showButtons('type1');
 //showButtons函数放在文本标注的最后
 
 // 根据所选的标注类型设置允许的文件类型
@@ -304,19 +304,17 @@ function showButtons(type) {
         fileInput.style.display = 'none';
     }
 	
-    var allOptionsContent = document.querySelectorAll('.optionsContent');
-        allOptionsContent.forEach(function (div) {
-            div.style.display = 'none';
-        });
+    // var allOptionsContent = document.querySelectorAll('.optionsContent');
+    //     allOptionsContent.forEach(function (div) {
+    //         div.style.display = 'none';
+    //     });
 
-        // 获取被点击的 input 元素
-        var clickedInput = event.target;
 
-        // 根据选中的 radio 按钮显示相应的 div
-        var selectedDiv = document.getElementById(type + 'Div');
-        if (selectedDiv) {
-            selectedDiv.style.display = 'block';
-        }
+    //     // 根据选中的 radio 按钮显示相应的 div
+    //     var selectedDiv = document.getElementById(type + 'Div');
+    //     if (selectedDiv) {
+    //         selectedDiv.style.display = 'block';
+    //     }
 
 
 }
@@ -360,8 +358,19 @@ annotateButton.addEventListener('click', () => {
     selectedTextDiv.textContent = '';
     annotationTextarea.value = '';
 });
-
-
+type1Div=document.getElementById('type1Div')
+const Button1 = document.querySelector('.type1#Button1');
+// 添加点击事件处理程序
+Button1.addEventListener('click', () => {
+    const confirmesc = confirm('请开始划选与标注');
+    if (!confirmesc) {
+        return;
+    }
+    type1Div.style.display='block';
+    labelContainer.style.display = 'none'; // 隐藏标签库
+    selectedLabelContainer.style.display = 'none';
+    labelSelectionContainer.style.display = 'none';
+});
 //---------------------------------------yyx↓-------------------------------------------
 
 // 获取“修改标签”按钮
@@ -386,6 +395,7 @@ editLabelButton.addEventListener('click', () => {
     labelContainer.style.display = 'block'; // 显示标签库
     selectedLabelContainer.style.display = 'none';
     labelSelectionContainer.style.display = 'none';
+    type1Div.style.display='none';
 });
 
 // 标签列表数据
@@ -494,6 +504,7 @@ selectLabelsButton.addEventListener('click', () => {
     resetLabelCheckboxes();
     filterInput.dispatchEvent(inputEvent);
     labelContainer.style.display = 'none'; // 隐藏标签库
+    type1Div.style.display='none';
     // 显示可选标签容器
     selectedLabelContainer.style.display = 'block';
     labelSelectionContainer.style.display = 'block';
