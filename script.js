@@ -1,5 +1,5 @@
 // 初始化默认选中类型的按钮
-showButtons('type1');
+// showButtons('type1');
 //showButtons函数放在文本标注的最后
 
 // 根据所选的标注类型设置允许的文件类型
@@ -304,6 +304,21 @@ function showButtons(type) {
         fileInput.style.display = 'none';
     }
 	
+    var allOptionsContent = document.querySelectorAll('.optionsContent');
+        allOptionsContent.forEach(function (div) {
+            div.style.display = 'none';
+        });
+
+        // 获取被点击的 input 元素
+        var clickedInput = event.target;
+
+        // 根据选中的 radio 按钮显示相应的 div
+        var selectedDiv = document.getElementById(type + 'Div');
+        if (selectedDiv) {
+            selectedDiv.style.display = 'block';
+        }
+
+
 }
 //文本标注结束
 
@@ -346,17 +361,6 @@ annotateButton.addEventListener('click', () => {
     annotationTextarea.value = '';
 });
 
-// 获取“添加标签”按钮元素
-const Button = document.querySelector('.type1');
-
-// 添加点击事件处理程序
-addLabelButton.addEventListener('click', function() {
-    // 显示标签添加容器
-    showLabelAddContainer();
-    
-    // 执行初始化标签库和已添加标签列表的逻辑
-    initLabelLists();
-});
 
 //---------------------------------------yyx↓-------------------------------------------
 
