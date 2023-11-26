@@ -27,8 +27,8 @@
         <button class="type1" id="Button1">划选与标注</button>
         <button class="type2">操作3</button>
         <button class="type2">操作4</button>
-        <button class="type3">操作5</button>
-        <button class="type3">操作6</button>
+        <button class="type3" onclick="annotateImage()">预标注</button>
+        <button class="type3" onclick="annotateImage1()">人工标注</button>
         <button class="type4" id="editLabelsButton">修改标签库</button>
         <button class="type4" id="selectLabelsButton">添加标签</button>
     </div>
@@ -62,8 +62,13 @@
         </div>
         <button class="submit-button">提交</button>
 
-        <div class="fixed-area" id="fixedArea">
-            这里将显示拖放的图片
+        <div class="fixed-area" id="annotationContainer">
+            <div id="fixedArea">
+        		<canvas id="canvas" ></canvas>
+                <!-- 您的内容在这里 -->
+            </div>
+            
+        	
         </div>
 
         <!----------------------信息标注------------------------>
@@ -134,6 +139,7 @@
     </div>
 </div>
 <div id="textLabelingArea" class="content"></div>
+<div id="result"></div>
 <script src="script.js"></script>
 </body>
 </html>
