@@ -109,16 +109,24 @@ function handleImageOrPdfFile(file) {
         };
         reader.readAsArrayBuffer(file);
     } else {
-        // 显示图片
+        // 显示图片  ch
+        
         const reader = new FileReader();
         reader.onload = (event) => {
             const imageUrl = event.target.result;
             const imageElement = document.createElement('img');
+        	imageElement.id = 'showIMG'
+        	//输出图片名字 ch
+        	const resultDiv = document.getElementById('result');
+        	const imageName = file.name
+        	resultDiv.innerHTML += `<p>图片名称：${imageName}</p>`;
+        	
             imageElement.src = imageUrl;
             fixedArea.innerHTML = '';
             fixedArea.appendChild(imageElement);
         };
         reader.readAsDataURL(file);
+        //ch
     }
 }
 
@@ -623,3 +631,114 @@ function resetLabelCheckboxes() {
 }
 
 //---------------------------------------yyx↑-------------------------------------------
+
+
+
+// 标注图片的函数    ch
+function annotateImage() {
+	const resultDiv = document.getElementById('result');
+	resultDiv.innerHTML += `<p>已自动对图片进行处理标记</p>`;
+	
+	
+	const imageName = getImageName(src);
+	// 输出图片名称
+	//console.log('图片名称:', imageName);
+	resultDiv.innerHTML += `<p>图片名称:  ${imageName}   </p>`;
+
+
+    // 获取 canvas 元素
+    const canvas = document.getElementById('canvas');
+	
+	
+    // 获取 2D 上下文
+    const ctx = canvas.getContext('2d');
+
+    // 在画布上绘制标注
+    ctx.font = '20px Arial'; // 设置字体样式
+    ctx.fillStyle = 'red';   // 设置文本颜色
+    ctx.fillText('这是标注', 50, 50); // 绘制文本，位置为 (50, 50)
+}
+
+function annotateImage1() {
+    // const container = document.getElementById('annotationContainer');
+	const container = document.getElementById('showIMG');
+	const containerWidth = container.clientWidth;
+	const containerHeight = container.clientHeight;
+	const imgsrc = container.src;
+	fixedArea.innerHTML = '<canvas id="canvas" ></canvas>';
+	
+	const canvas = document.getElementById('canvas');
+	canvas.width = containerWidth;
+	canvas.height = containerHeight;
+	const imageElement1 = document.createElement('img');
+	imageElement1.id = 'showIMG'
+	imageElement1.src = imgsrc;
+	
+    const ctx = canvas.getContext('2d');
+    let points = [];
+    let drawing = false;
+	
+	imageElement1.onload = function(){
+		ctx.drawImage(imageElement1, 0, 0, containerWidth, containerHeight);
+	}
+	
+	 
+    // 监听鼠标点击事件
+    canvas.addEventListener('mousedown', (e) => {
+        const rect = canvas.getBoundingClientRect();
+		
+		//const rect = canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        if (points.length < 4) {
+            points.push({ x, y });
+            drawPoint(x, y);
+        }
+
+        if (points.length === 4) {
+            drawBoundingBox();
+            points = [];
+        }
+    });
+	
+
+
+    // 绘制点击的点
+    function drawPoint(x, y) {
+        ctx.fillStyle = 'blue';
+        ctx.beginPath();
+        ctx.arc(x, y, 3, 0, 2 * Math.PI);
+        ctx.fill();
+    }
+	
+	
+
+	let index=0;
+    // 绘制标记框
+    function drawBoundingBox() {
+		const resultDiv = document.getElementById('result');
+		
+        if (points.length === 4) {
+            ctx.strokeStyle = 'red';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(points[0].x, points[0].y);
+            ctx.lineTo(points[1].x, points[1].y);
+            ctx.lineTo(points[2].x, points[2].y);
+            ctx.lineTo(points[3].x, points[3].y);
+			resultDiv.innerHTML += `<p>标记框${index}：</p>`;
+			resultDiv.innerHTML += `<p>1坐标: (${points[0].x} , ${points[0].y})</p>`;
+			resultDiv.innerHTML += `<p>2坐标: (${points[1].x} , ${points[1].y})</p>`;
+			resultDiv.innerHTML += `<p>3坐标: (${points[2].x} , ${points[2].y})</p>`;
+			resultDiv.innerHTML += `<p>4坐标: (${points[3].x} , ${points[3].y})</p>`;
+            ctx.closePath();
+            ctx.stroke();
+			index++;
+			
+        }
+    }
+	
+	
+}
+//ch
