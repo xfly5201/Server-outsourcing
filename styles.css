@@ -1,65 +1,126 @@
+/* 基本全局样式 */
 body {
+    font-family: 'Roboto', sans-serif;
     margin: 0;
-    font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
     height: 100vh;
+    background-color: #F3F4F6; /* 浅灰色背景 */
+    color: #4B5563; /* 暗灰色文字 */
 }
+
+/* 导航栏样式 */
 .navbar {
-    background-color: #007bff;
+    background-color: #e3e4ea; /* 浅灰色背景 */
+    border-bottom: 4px solid #E5E7EB; /* 底部边框，颜色稍深 */
     padding: 10px;
-    color: white;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
-.navbar div {
+/* 导航项样式 */
+.nav-item {
     cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    color: white; /* 白色文字 */
 }
+
+.nav-item:hover {
+    filter: brightness(120%); /* 悬停时亮化颜色 */
+}
+
+.data-annotation {
+    background-color: #1E3A8A; /* 深蓝色 */
+}
+
+.data-review {
+    background-color: #047857; /* 深绿色 */
+}
+
+.data-release {
+    background-color: #B91C1C; /* 深红色 */
+}
+
+.project-management {
+    background-color: #6D28D9; /* 深紫色 */
+}
+
+.permission-management {
+    background-color: #C2410C; /* 深橙色 */
+}
+
+/* 侧边栏样式 */
 .sidebar {
-    background-color: #f1f1f1;
+    background-color: #F3F4F6; /* 浅灰色 */
     padding: 10px;
-    width: 200px; 
+    width: 200px;
 }
+
 .sidebar button {
     width: 100%;
     padding: 10px;
     margin-bottom: 5px;
-    display: none; 
+    border-radius: 5px;
+    background-color: #1E3A8A; /* 统一深蓝色按钮 */
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
+
+.sidebar button:hover {
+    background-color: #FBBF24; /* 悬停效果 */
+}
+
+/* 主内容区样式 */
 .main {
     flex-grow: 1;
     display: flex;
 }
+
 .content {
     padding: 20px;
     flex-grow: 1;
 }
+
+/* 文件拖放区域样式 */
 .file-drop-area {
-    border: 2px dashed #ccc;
-    padding: 400px;
+    border: 2px dashed #1E3A8A;
+    padding: 20px;
     text-align: center;
     margin-bottom: 10px;
+    cursor: pointer;
 }
-.options {
-    margin-bottom: 10px;
+
+.file-drop-area.dragover {
+    background-color: #E5E7EB;
 }
+
+/* 提交按钮样式 */
 .submit-button {
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #1E3A8A;
     color: white;
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    bottom: 10px;
-    right: 10px;
+    margin-top: 10px;
 }
+
+/* 主标题样式 */
 .main-title {
     text-align: center;
-    background-color: #b700ff;
+    background-color: #1E3A8A;
     color: white;
     padding: 10px;
     margin: 0;
 }
+
+/* 可根据需要继续添加或修改其他样式 */
+
+/* ...保留原有的CSS规则，并根据需要进行调整... */
+
 
 /* 添加拖放区域的样式 */
 #fileDropArea {
