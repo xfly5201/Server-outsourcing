@@ -12,14 +12,14 @@
 <body>
 <h1 class="main-title">数据标注界面</h1>
 
-
 <div class="navbar">
-    <div>数据标注</div>
-    <div>数据审核</div>
-    <div>数据发布</div>
-    <div>项目管理</div>
-    <div>权限管理</div>
+    <div class="nav-item data-annotation">数据标注</div>
+    <div class="nav-item data-review">数据审核</div>
+    <div class="nav-item data-release">数据发布</div>
+    <div class="nav-item project-management">项目管理</div>
+    <div class="nav-item permission-management">权限管理</div>
 </div>
+
 
 <div class="main">
     <div class="sidebar" id="sidebar">
@@ -52,7 +52,7 @@
             <label for="type4">图片分类标注</label>
         </div>
         <!-- <button onclick="submitForm()">提交</button> -->
-        
+
 
         <div>
             <label for="label1">文本:</label>
@@ -64,11 +64,11 @@
 
         <div class="fixed-area" id="annotationContainer">
             <div id="fixedArea">
-        		<canvas id="canvas" ></canvas>
+                <canvas id="canvas" ></canvas>
                 <!-- 您的内容在这里 -->
             </div>
-            
-        	
+
+
         </div>
 
         <!----------------------信息标注------------------------>
@@ -93,50 +93,50 @@
         <!------------------------------yyx↓-------------------------------->
         <div id="type4Div" class="optionsContent" >
             <div class="label-container" id="labelContainer" style="display: none;">
-                        <h2>标签库</h2>
-                        <div class="filter-delete-container">
-                            <input type="text" id="filterInput" placeholder="筛选标签">
-                            <button id="deleteSelectedButton" onclick="deleteSelectedLabels()" class="lbbutton">删除选中标签</button>
-                        </div>
-                        <br> <!-- 在这里添加换行 -->
-                        <div class="filter-add-container">
-                            <input type="text" id="newLabelInput" placeholder="新标签">
-                            <button id="addNewLabelButton" onclick="addNewLabel()" class="lbbutton">添加新标签</button>
-                        </div>          
-                        <br> <!-- 在这里添加换行 -->
-                        <div id="labelList" class="label-list">
-                            <!-- 标签列表将在这里显示 -->
-                        </div>
-                        <br>
-                        <button id="reserveLabelsButton" class="lbbutton">设为预定</button>
+                <h2>标签库</h2>
+                <div class="filter-delete-container">
+                    <input type="text" id="filterInput" placeholder="筛选标签">
+                    <button id="deleteSelectedButton" onclick="deleteSelectedLabels()" class="lbbutton">删除选中标签</button>
+                </div>
+                <br> <!-- 在这里添加换行 -->
+                <div class="filter-add-container">
+                    <input type="text" id="newLabelInput" placeholder="新标签">
+                    <button id="addNewLabelButton" onclick="addNewLabel()" class="lbbutton">添加新标签</button>
+                </div>
+                <br> <!-- 在这里添加换行 -->
+                <div id="labelList" class="label-list">
+                    <!-- 标签列表将在这里显示 -->
+                </div>
+                <br>
+                <button id="reserveLabelsButton" class="lbbutton">设为预定</button>
             </div>
 
-                    
-                    <!-- 已选标签容器 -->
-                    <div class="label-container" id="labelSelectionContainer"style="display: none;" >
-                        <h2>已选标签</h2>
-                        <button id="updateLabelsButton" class="lbbutton">更新</button>
-                        <br>
-                        <div class="label-list" id="optionalLabelList">
-                            <!-- 可选标签将在这里显示 -->
-                        </div>
-                    </div>
 
-                    <!-- 可选标签容器 -->
-                    <div class="label-container" id="selectedLabelContainer" style="display: none;">
-                        <h2>可选标签</h2>
-                        <input type="text" id="selectedLabelFilter" placeholder="筛选可选标签">
-                        </div>
-                        <br> <!-- 在这里添加换行 -->
-                        <div class="label-list" id="selectedLabelList">
-                            <!-- 已选标签将在这里显示 -->
-                        </div>
-                    </div>
+            <!-- 已选标签容器 -->
+            <div class="label-container" id="labelSelectionContainer"style="display: none;" >
+                <h2>已选标签</h2>
+                <button id="updateLabelsButton" class="lbbutton">更新</button>
+                <br>
+                <div class="label-list" id="optionalLabelList">
+                    <!-- 可选标签将在这里显示 -->
+                </div>
+            </div>
+
+            <!-- 可选标签容器 -->
+            <div class="label-container" id="selectedLabelContainer" style="display: none;">
+                <h2>可选标签</h2>
+                <input type="text" id="selectedLabelFilter" placeholder="筛选可选标签">
+            </div>
+            <br> <!-- 在这里添加换行 -->
+            <div class="label-list" id="selectedLabelList">
+                <!-- 已选标签将在这里显示 -->
+            </div>
         </div>
-        
-        <!------------------------------yyx↑-------------------------------->
-
     </div>
+
+    <!------------------------------yyx↑-------------------------------->
+
+</div>
 </div>
 <div id="textLabelingArea" class="content"></div>
 <div id="result"></div>
